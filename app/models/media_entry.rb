@@ -1,0 +1,2 @@
+class MediaEntry < ApplicationRecord
+end

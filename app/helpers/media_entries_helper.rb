@@ -1,0 +1,2 @@
+module MediaEntriesHelper
+end
