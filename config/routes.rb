@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   post "/media" => "media#create"
   delete "/media" => "media#destroy"
 
+  post "/users" => "users#create"
+
+  post "/sessions" => "sessions#create"
 end
