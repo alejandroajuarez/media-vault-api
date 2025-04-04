@@ -5,8 +5,7 @@ class MediaEntriesController < ApplicationController
   end
   
   def show
-    id_find = find_by[:id]
-    @media_entry = MediaEntry.find_by(id: 2)
+    @media_entry = MediaEntry.find_by(id: params[:id])
     render :show
   end
   
