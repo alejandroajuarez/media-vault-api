@@ -1,42 +1,42 @@
 class MediaEntriesController < ApplicationController
   def index
-    @mediaentries = MediaEntry.all
+    @media_entries = MediaEntry.all
     render :index
   end
-
+  
   def show
     id_find = find_by[:id]
-    @mediaentry = MediaEntry.find_by(id: id_find)
+    @media_entry = MediaEntry.find_by(id: 2)
     render :show
   end
-
+  
   def create
-    @mediaentry = MediaEntry.new(
+    @media_entry = MediaEntry.new(
       title: params[:title],
       description: params[:description],
       media_type: params[:media_type],
       image_url: params[:image_url],
       creator: params[:creator]
     )
-    if @mediaentry.save
+    if @media_entry.save
       render :show
     else
-      render json: { errors: @mediaentry.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @media_entry.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def update
-    @mediaentry = MediaEntry.find_by(id: params[:id])
-    @mediaentry.title = params[:title]              || @mediaentry.title
-    @mediaentry.description = params[:description]  || @mediaentry.description
-    @mediaentry.media_type = params[:media_type]    || @mediaentry.media_type
-    @mediaentry.image_url = params[:image_url]      || @mediaentry.image_url
-    @mediaentry.creator = params[:creator]          || @mediaentry.creator
+    @media_entry = MediaEntry.find_by(id: params[:id])
+    @media_entry.title = params[:title]              || @media_entry.title
+    @media_entry.description = params[:description]  || @media_entry.description
+    @media_entry.media_type = params[:media_type]    || @media_entry.media_type
+    @media_entry.image_url = params[:image_url]      || @media_entry.image_url
+    @media_entry.creator = params[:creator]          || @media_entry.creator
 
-    if @mediaentry.save!
+    if @media_entry.save!
       render :show
     else
-      render json: { errors: @mediaentry.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @media_entry.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
