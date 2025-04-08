@@ -6,7 +6,7 @@ class MediaEntriesController < ApplicationController
   end
   
   def show
-    @media_entry = current_user.MediaEntry.find_by(id: params[:id])
+    @media_entry = MediaEntry.find_by(id: params[:id])
     if @media_entry
       render :show
     else

@@ -1,4 +1,4 @@
 class SavedMedium < ApplicationRecord
-  belongs to :user
-  belongs to :media_entry
+  belongs_to :user
+  belongs_to :media_entry
 end
