@@ -1,7 +1,7 @@
 class SavedMediaController < ApplicationController
 
   def index
-    @saved_media = SavedMedia.where(user_id: current_user.id)
+    @saved_media = SavedMedium.all
     render :index
   end
 
@@ -11,7 +11,7 @@ class SavedMediaController < ApplicationController
       render :show
     else
       render json: { error: "Not found" }, status: :not_found
-    end    
+    end
   end
 
   def create
