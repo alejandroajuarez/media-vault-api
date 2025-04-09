@@ -15,6 +15,18 @@ class SavedMediaController < ApplicationController
   end
 
   def create
-    
+    @saved_medium = SavedMedium.new(
+      media_status: params[:media_status],
+      rating: params[:rating],
+      progress: params[:progress],
+      favorite: params[:favorite],
+      user_id: current_user.id,
+      media_entry_id: params[:media_entry_id]
+    )
+    if @saved_medium.save!
+      render :show
+    else
+      render json: { errors: @saved_medium.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 end

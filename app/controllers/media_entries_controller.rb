@@ -1,7 +1,7 @@
 class MediaEntriesController < ApplicationController
   before_action :authenticate_user, only: [:create, :update, :destroy]
   def index
-    @media_entries = MediaEntry.where(user_id: current_user)
+    @media_entries = MediaEntry.all
     render :index
   end
   
