@@ -1,7 +1,7 @@
 class SavedMediaController < ApplicationController
 
   def index
-    @saved_media = SavedMedium.all
+    @saved_media = current_user.saved_media
     render :index
   end
 
@@ -27,6 +27,30 @@ class SavedMediaController < ApplicationController
       render :show
     else
       render json: { errors: @saved_medium.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @saved_medium = SavedMedium.find_by(id: params[:id])
+    if @saved_medium
+      @saved_medium.media_status = params[:media_status] || @saved_medium.media_status
+      @saved_medium.rating = params[:rating]             || @saved_medium.rating
+      @saved_medium.progress = params[:progress]         || @saved_medium.progress
+      @saved_medium.favorite = params[:favorite]         || @saved_medium.favorite
+      @saved_medium.save
+      render :show
+    else
+      render json: { error: "Not found or not authorized" }, status: :not_found
+    end
+  end
+
+  def destroy
+    @saved_medium = SavedMedium.find_by(id: params[:id])
+    if @saved_medium
+      @saved_medium.destroy
+      render json: { message: "Entry has been deleted" }
+    else
+      render json: { error: "Not found or not authorized" }, status: :not_found
     end
   end
 end
