@@ -10,13 +10,13 @@
 
 # me4 = MediaEntry.create(title: "Oathbringer", description: "Third book in the Stormlight Archives", media_type: "Book", image_url: "https://m.media-amazon.com/images/I/91x4fchgt2L.jpg", creator: "Brandon Sanderson")
 
-# me5 = MediaEntry.create(title: "Edgedancer", description: "First Novella in the Stormlight Archives, book 2.5", media_type: "Book", image_url: "https://m.media-amazon.com/images/I/81SuJQI8uNL.jpg", creator: "Brandon Sanderson")
+# # me5 = MediaEntry.create(title: "Edgedancer", description: "First Novella in the Stormlight Archives, book 2.5", media_type: "Book", image_url: "https://m.media-amazon.com/images/I/81SuJQI8uNL.jpg", creator: "Brandon Sanderson")
 
 # me6 = MediaEntry.create(title: "Dawnshard", description: "Second Novella in the Stormlight Archives, book 3.5", media_type: "Book", image_url: "https://mpd-biblio-covers.imgix.net/9781250850553.jpg", creator: "Brandon Sanderson")
 
-# me7 = MediaEntry.create(title: "Rhythm of War", description: "Fourth book in the Stormlight Archives", media_type: "Book", image_url: "https://m.media-amazon.com/images/I/81ZR25hH7eL.jpg", creator: "Brandon Sanderson")
+# # me7 = MediaEntry.create(title: "Rhythm of War", description: "Fourth book in the Stormlight Archives", media_type: "Book", image_url: "https://m.media-amazon.com/images/I/81ZR25hH7eL.jpg", creator: "Brandon Sanderson")
 
-# me8 = MediaEntry.create(title: "Wind and Truth", description: "Fifth book in the Stormlight Archives", media_type: "Book", image_url: "https://m.media-amazon.com/images/I/81oQNU2eoPL.jpg", creator: "Brandon Sanderson")
+# # me8 = MediaEntry.create(title: "Wind and Truth", description: "Fifth book in the Stormlight Archives", media_type: "Book", image_url: "https://m.media-amazon.com/images/I/81oQNU2eoPL.jpg", creator: "Brandon Sanderson")
 
 # me9 = MediaEntry.create(title: "The Final Empire", description: "First book in the Mistborn series", media_type: "Book", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrxLr2D2kB07AW3YZaDaqqne_2wMUUWCf24A&s", creator: "Brandon Sanderson")
 
