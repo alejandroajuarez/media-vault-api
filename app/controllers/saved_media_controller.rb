@@ -1,7 +1,8 @@
 class SavedMediaController < ApplicationController
+  before_action :authenticate_user
 
   def index
-    @saved_media = current_user.saved_media
+    @saved_media = current_user.saved_media.includes(:media_entry)
     render :index
   end
 

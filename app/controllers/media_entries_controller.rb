@@ -1,7 +1,8 @@
 class MediaEntriesController < ApplicationController
-  before_action :authenticate_user, only: [:create, :update, :destroy]
+  before_action :authenticate_user, only: [:index, :create, :update, :destroy]
+
   def index
-    @media_entries = MediaEntry.all
+    @media_entries = MediaEntry.where.not(id: current_user.saved_media.select(:media_entry_id))
     render :index
   end
   
@@ -24,7 +25,7 @@ class MediaEntriesController < ApplicationController
       user_id: current_user.id
     )
     if @media_entry.save
-      render json: :show
+      render :show
     else
       render json: { errors: @media_entry.errors.full_messages }, status: :unprocessable_entity
     end
@@ -33,13 +34,13 @@ class MediaEntriesController < ApplicationController
   def update
     @media_entry = MediaEntry.find_by(id: params[:id])
     if @media_entry
-      @media_entry.title = params[:title]              || @media_entry.title
-      @media_entry.description = params[:description]  || @media_entry.description
-      @media_entry.media_type = params[:media_type]    || @media_entry.media_type
-      @media_entry.image_url = params[:image_url]      || @media_entry.image_url
-      @media_entry.creator = params[:creator]          || @media_entry.creator
+      @media_entry.title       = params[:title]       || @media_entry.title
+      @media_entry.description = params[:description] || @media_entry.description
+      @media_entry.media_type  = params[:media_type]  || @media_entry.media_type
+      @media_entry.image_url   = params[:image_url]   || @media_entry.image_url
+      @media_entry.creator     = params[:creator]     || @media_entry.creator
       @media_entry.save
-      render json: :show
+      render :show
     else
       render json: { error: "Not found or not authorized" }, status: :not_found
     end
