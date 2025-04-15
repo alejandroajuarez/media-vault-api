@@ -1,11 +1,19 @@
 class MediaEntriesController < ApplicationController
-  before_action :authenticate_user, only: [:index, :create, :update, :destroy]
+  # Remove :index from the before_action so it's public;
+  # keep authentication for create, update, destroy.
+  before_action :authenticate_user, only: [:create, :update, :destroy]
 
   def index
-    @media_entries = MediaEntry.where.not(id: current_user.saved_media.select(:media_entry_id))
+    if current_user
+      # For logged-in users, exclude media they've already saved.
+      @media_entries = MediaEntry.where.not(id: current_user.saved_media.select(:media_entry_id))
+    else
+      # For non-logged in users, show all media entries.
+      @media_entries = MediaEntry.all
+    end
     render :index
   end
-  
+
   def show
     @media_entry = MediaEntry.find_by(id: params[:id])
     if @media_entry
@@ -14,7 +22,7 @@ class MediaEntriesController < ApplicationController
       render json: { error: "Not found" }, status: :not_found
     end
   end
-  
+
   def create
     @media_entry = MediaEntry.new(
       title: params[:title],
