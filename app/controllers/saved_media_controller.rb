@@ -35,9 +35,10 @@ class SavedMediaController < ApplicationController
     @saved_medium = SavedMedium.find_by(id: params[:id])
     if @saved_medium
       @saved_medium.media_status = params[:media_status] || @saved_medium.media_status
-      @saved_medium.rating = params[:rating]             || @saved_medium.rating
-      @saved_medium.progress = params[:progress]         || @saved_medium.progress
-      @saved_medium.favorite = params[:favorite]         || @saved_medium.favorite
+      @saved_medium.rating = params[:rating] || @saved_medium.rating
+      @saved_medium.progress = params[:progress] || @saved_medium.progress
+      # Use has_key? so that if favorite is false, it still updates.
+      @saved_medium.favorite = params.has_key?(:favorite) ? params[:favorite] : @saved_medium.favorite
       @saved_medium.save
       render :show
     else
