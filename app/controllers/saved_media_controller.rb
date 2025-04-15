@@ -21,6 +21,7 @@ class SavedMediaController < ApplicationController
       rating: params[:rating],
       progress: params[:progress],
       favorite: params[:favorite],
+      notes: params[:notes],
       user_id: current_user.id,
       media_entry_id: params[:media_entry_id]
     )
@@ -35,9 +36,10 @@ class SavedMediaController < ApplicationController
     @saved_medium = SavedMedium.find_by(id: params[:id])
     if @saved_medium
       @saved_medium.media_status = params[:media_status] || @saved_medium.media_status
-      @saved_medium.rating = params[:rating] || @saved_medium.rating
-      @saved_medium.progress = params[:progress] || @saved_medium.progress
-      @saved_medium.favorite = params.has_key?(:favorite) ? params[:favorite] : @saved_medium.favorite
+      @saved_medium.rating       = params[:rating]       || @saved_medium.rating
+      @saved_medium.progress     = params[:progress]     || @saved_medium.progress
+      @saved_medium.favorite     = params.has_key?(:favorite) ? params[:favorite] : @saved_medium.favorite
+      @saved_medium.notes        = params[:notes]        || @saved_medium.notes  
       @saved_medium.save
       render :show
     else
